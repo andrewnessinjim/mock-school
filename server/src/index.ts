@@ -1,5 +1,4 @@
 require("dotenv").config();
-// console.log(process.env);
 
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
@@ -8,9 +7,10 @@ import { readFileSync } from "fs";
 import path from "path";
 import { gql } from "graphql-tag";
 
-
-import { Pool } from "pg";
 import studentResolvers from "./resolvers/studentResolvers";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 const typeDefs = gql(
   readFileSync(path.resolve(__dirname, "./schema.graphql"), {
@@ -18,18 +18,17 @@ const typeDefs = gql(
   })
 );
 
-const pool = new Pool();
 
 const resolvers = {
-  ...studentResolvers
-}
+  ...studentResolvers,
+};
 
 async function startApolloServer() {
   const server = new ApolloServer({ typeDefs, resolvers });
   const { url } = await startStandaloneServer(server, {
     context: async () => {
       return {
-        pgPool: pool,
+        prisma,
       };
     },
   });

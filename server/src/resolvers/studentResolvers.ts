@@ -21,23 +21,22 @@ const books = [
 const studentResolvers: Resolvers = {
   Query: {
     books: () => books,
-    students: async (_, __, { pgPool }) => {
-      return fetchStudents(pgPool);
+    students: async (_, __, { prisma }) => {
+      return fetchStudents(prisma);
     },
-    student: async (_, { id: studentId }, { pgPool }) => {
-      return fetchStudent(pgPool, studentId);
+    student: async (_, { id: studentId }, { prisma }) => {
+      return fetchStudent(prisma, studentId);
     },
   },
   Mutation: {
-    addStudent: async (_, { name, age, class_id }, { pgPool }) => {
-      return saveStudent(pgPool, name, age, class_id);
+    addStudent: async (_, { name, age, class_id }, { prisma }) => {
+      return saveStudent(prisma, name, age, class_id);
     },
-    updateStudent: async (_, { id, name, age, class_id }, { pgPool }) => {
-      console.log("updateStudent", id, name, age, class_id);
-      return updateStudent(pgPool, id, name, age, class_id);
+    updateStudent: async (_, { id, name, age, class_id }, { prisma }) => {
+      return updateStudent(prisma, id, name, age, class_id);
     },
-    deleteStudent: async (_, { id }, { pgPool }) => {
-      return deleteStudent(pgPool, id);
+    deleteStudent: async (_, { id }, { prisma }) => {
+      return deleteStudent(prisma, id);
     },
   },
 };

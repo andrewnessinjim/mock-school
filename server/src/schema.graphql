@@ -1,13 +1,13 @@
 type Query {
   books: [Book]
   students: [Student!]!
-  student(id: ID!): Student
+  student(id: Int!): Student
 }
 
 type Mutation {
   addStudent(name: String!, age: Int!, class_id: String): Student
-  updateStudent(id: ID!, name: String, age: Int, class_id: String): Student
-  deleteStudent(id: ID!): Boolean
+  updateStudent(id: Int!, name: String, age: Int, class_id: String): Student
+  deleteStudent(id: Int!): Boolean
 }
 
 type Book {
@@ -16,7 +16,7 @@ type Book {
 }
 
 type Student {
-  id: ID!
+  id: Int!
   name: String!
   age: Int!
   class_id: String
