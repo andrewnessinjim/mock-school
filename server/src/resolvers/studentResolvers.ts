@@ -12,6 +12,7 @@ import {
 } from "../generated/graphql_types";
 import { Prisma } from "@prisma/client";
 import { fetchClass } from "../services/classService";
+import { fetchAttendance } from "../services/attendanceService";
 
 function graphqlToPrismaFilter(
   filter?: StudentFilter | null
@@ -57,6 +58,20 @@ const studentResolvers: Resolvers = {
       }
 
       return fetchClass(prisma, parent.class_id);
+    },
+    subjects: async (parent, _, { prisma }) => {
+      if (!parent.class_id) {
+        return null;
+      }
+      return prisma.subjects.findMany({
+        where: { class_id: parent.class_id },
+      });
+    },
+    attendance: async (parent, _, { prisma }) => {
+      if (!parent.id) {
+        return null;
+      }
+      return fetchAttendance(prisma, parent.id);
     },
   },
   Query: {

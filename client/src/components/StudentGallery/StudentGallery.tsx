@@ -25,7 +25,7 @@ async function StudentGallery() {
     query: GET_STUDENTS,
     variables: {
       sort: [{ field: "name", direction: "asc" }],
-      pageSize: 9,
+      pageSize: 12,
       cursor: 0,
     },
   });

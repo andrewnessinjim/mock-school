@@ -5,4 +5,16 @@ export interface Student {
   class: {
     description: string;
   };
+  subjects: Subject[];
+  attendance: Attendance[];
+}
+
+export interface Subject {
+  id: number;
+  name: string;
+}
+
+export interface Attendance {
+  date: string;
+  status: string;
 }

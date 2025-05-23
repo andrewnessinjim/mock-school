@@ -12,14 +12,25 @@ const GET_STUDENT = gql`
       id
       name
       age
-      class_id
+      class {
+        id
+        description
+      }
+      subjects {
+        id
+        name
+      }
+      attendance {
+        date
+        status
+      }
     }
   }
 `;
 
 async function StudentPage({ params }: Props) {
   const { student_id } = await params;
-  // await delay(2000); 
+  // await delay(20000);
   const result = await apolloClient.query({
     query: GET_STUDENT,
     variables: {

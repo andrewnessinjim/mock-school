@@ -21,11 +21,26 @@ type Student {
   age: Int!
   class_id: String
   class: Class
+  subjects: [Subject!]
+  attendance: [Attendance!]
 }
 
 type Class {
   id: String!
   description: String!
+}
+
+type Subject {
+  id: Int!
+  name: String!
+}
+
+type Attendance {
+  id: Int!
+  student_id: Int!
+  date: String!
+  class_id: String!
+  status: String!
 }
 
 input IntFilter {
