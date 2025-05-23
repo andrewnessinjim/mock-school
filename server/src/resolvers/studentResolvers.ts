@@ -50,9 +50,14 @@ function graphqlToPrismaSort(
 
 const studentResolvers: Resolvers = {
   Query: {
-    students: async (_, { filter, sort }, { prisma }) => {
+    students: async (_, args, { prisma }) => {
+      const { filter, sort, cursor, pageSize, direction = "forward" } = args;
+
       return fetchStudents(
         prisma,
+        cursor ?? 1,
+        pageSize ?? 10,
+        direction,
         graphqlToPrismaFilter(filter),
         graphqlToPrismaSort(sort)
       );

@@ -1,5 +1,11 @@
 type Query {
-  students(filter: StudentFilter, sort: [SortOrder!]): [Student!]!
+  students(
+    filter: StudentFilter
+    sort: [SortOrder!]
+    cursor: Int
+    pageSize: Int
+    direction: PaginationDirection = forward
+  ): StudentPage!
   student(id: Int!): Student
 }
 
@@ -45,4 +51,15 @@ enum StudentSortField {
 enum SortDirection {
   asc
   desc
+}
+
+enum PaginationDirection {
+  forward
+  backward
+}
+
+type StudentPage {
+  items: [Student!]!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
 }
