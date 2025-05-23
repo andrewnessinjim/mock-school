@@ -8,19 +8,19 @@ INSERT INTO
 VALUES
     (
         'CLS101',
-        'Introductory class for first-year students focusing on general foundational subjects.'
+        'Foundational Studies'
     ),
     (
         'CLS102',
-        'Intermediate level class for second-year students with emphasis on core subjects.'
+        'Core Subjects'
     ),
     (
         'CLS103',
-        'Advanced third-year class designed to prepare students for specialization.'
+        'Advanced Prep'
     ),
     (
         'CLS104',
-        'Final year class focused on project work, practicals, and preparation for graduation.'
+        'Capstone Projects'
     );
 
 CREATE TABLE IF NOT EXISTS subjects (
