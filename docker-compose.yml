@@ -12,6 +12,12 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
       - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    command: >
+      postgres
+      -c log_statement=all
+      -c log_duration=on
+      -c logging_collector=off
+      -c log_destination=stderr
 
 volumes:
   db-data:
