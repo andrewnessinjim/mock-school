@@ -18,7 +18,7 @@ function StudentCard({ student }: Props) {
         scale: 1.01,
       }}
     >
-      <StyledLink href={`/students/${student.id}`}>
+      <StyledLink href={`/students/${student.id}?name=${student.name}`}>
         <Title>{student.name}</Title>
         <Spacer size={12} />
         <p>Class: {student.class?.description ?? "No class assigned"}</p>

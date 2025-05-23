@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 import StudentCard from "../StudentCard";
 import { Wrapper } from "./styles";
 import apolloClient from "@/apolloClient";
+import { Student } from "../../../types";
 
 const GET_STUDENTS = gql`
   query GetStudents($sort: [SortOrder!], $pageSize: Int, $cursor: Int) {
@@ -33,7 +34,7 @@ async function StudentGallery() {
 
   return (
     <Wrapper>
-      {students.items.map((student: any) => (
+      {students.items.map((student: Student) => (
         <StudentCard key={student.id} student={student} />
       ))}
     </Wrapper>
