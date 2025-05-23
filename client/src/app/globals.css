@@ -1,12 +1,37 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --mauve-1: hsl(270, 6%, 7%);
+  --mauve-2: hsl(270, 4%, 10%);
+  --mauve-3: hsl(260, 4%, 14%);
+  --mauve-4: hsl(270, 5%, 17%);
+  --mauve-5: hsl(264, 5%, 20%);
+  --mauve-6: hsl(270, 5%, 24%);
+  --mauve-7: hsl(257, 5%, 29%);
+  --mauve-8: hsl(258, 5%, 39%);
+  --mauve-9: hsl(251, 5%, 45%);
+  --mauve-10: hsl(251, 4%, 50%);
+  --mauve-11: hsl(258, 7%, 72%);
+  --mauve-12: hsl(240, 6%, 94%);
+  --plum-1: hsl(300, 17%, 8%);
+  --plum-2: hsl(300, 25%, 10%);
+  --plum-3: hsl(300, 34%, 15%);
+  --plum-4: hsl(297, 42%, 20%);
+  --plum-5: hsl(296, 40%, 24%);
+  --plum-6: hsl(296, 34%, 28%);
+  --plum-7: hsl(294, 31%, 36%);
+  --plum-8: hsl(292, 30%, 47%);
+  --plum-9: hsl(292, 45%, 51%);
+  --plum-10: hsl(292, 48%, 56%);
+  --plum-11: hsl(292, 79%, 77%);
+  --plum-12: hsl(300, 59%, 89%);
+
+  --background: var(--plum-12);
+  --foreground: var(--plum-1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--plum-1);
+    --foreground: var(--mauve-12);
   }
 }
 

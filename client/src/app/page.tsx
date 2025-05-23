@@ -1,3 +1,10 @@
+import Header from "@/components/Header";
+import { Wrapper } from "./styles";
+
 export default function Home() {
-  return <h1>Hello World</h1>;
+  return (
+    <Wrapper>
+      <Header />
+    </Wrapper>
+  );
 }
