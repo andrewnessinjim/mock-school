@@ -1,5 +1,5 @@
 type Query {
-  students(filter: StudentFilter): [Student!]!
+  students(filter: StudentFilter, sort: [SortOrder!]): [Student!]!
   student(id: Int!): Student
 }
 
@@ -28,4 +28,21 @@ input IntFilter {
 input StudentFilter {
   age: IntFilter
   class_id: String
+}
+
+input SortOrder {
+  field: StudentSortField!
+  direction: SortDirection!
+}
+
+enum StudentSortField {
+  id
+  name
+  age
+  class_id
+}
+
+enum SortDirection {
+  asc
+  desc
 }

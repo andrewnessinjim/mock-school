@@ -5,7 +5,11 @@ import {
   saveStudent,
   updateStudent,
 } from "../services/studentServices";
-import { Resolvers, StudentFilter } from "../generated/graphql_types";
+import {
+  Resolvers,
+  SortOrder,
+  StudentFilter,
+} from "../generated/graphql_types";
 import { Prisma } from "@prisma/client";
 
 function graphqlToPrismaFilter(
@@ -29,10 +33,29 @@ function graphqlToPrismaFilter(
   };
 }
 
+function graphqlToPrismaSort(
+  sort?: SortOrder[] | null
+): Prisma.studentsOrderByWithRelationInput | undefined {
+  if (!sort) {
+    return undefined;
+  }
+
+  const orderBy: Prisma.studentsOrderByWithRelationInput = {};
+  sort.forEach((sortItem) => {
+    const { field, direction } = sortItem;
+    orderBy[field] = direction;
+  });
+  return orderBy;
+}
+
 const studentResolvers: Resolvers = {
   Query: {
-    students: async (_, { filter }, { prisma }) => {
-      return fetchStudents(prisma, graphqlToPrismaFilter(filter));
+    students: async (_, { filter, sort }, { prisma }) => {
+      return fetchStudents(
+        prisma,
+        graphqlToPrismaFilter(filter),
+        graphqlToPrismaSort(sort)
+      );
     },
     student: async (_, { id: studentId }, { prisma }) => {
       return fetchStudent(prisma, studentId);

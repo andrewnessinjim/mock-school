@@ -2,12 +2,14 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 export async function fetchStudents(
   prisma: PrismaClient,
-  filter?: Prisma.studentsWhereInput
+  filter?: Prisma.studentsWhereInput,
+  orderBy?: Prisma.studentsOrderByWithRelationInput
 ) {
   return prisma.students.findMany({
     where: {
       ...filter,
     },
+    orderBy
   });
 }
 
