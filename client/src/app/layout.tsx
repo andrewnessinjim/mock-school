@@ -30,13 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ApolloContextProvider>
-          <StyledComponentsRegistry>
-            <Header />
-            <Spacer size={24}/>
-            {children}
-          </StyledComponentsRegistry>
-        </ApolloContextProvider>
+        <div id="app-root">
+          <ApolloContextProvider>
+            <StyledComponentsRegistry>
+              <Header />
+              <Spacer size={24} />
+              {children}
+            </StyledComponentsRegistry>
+          </ApolloContextProvider>
+        </div>
       </body>
     </html>
   );

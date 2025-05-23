@@ -79,7 +79,7 @@ function HamMenu({ menuItems }: Props) {
                     </ExpandableDropdownMenuItem>
                     <DropdownMenu.Portal>
                       <DropdownMenu.SubContent
-                        sideOffset={2}
+                        sideOffset={12}
                         alignOffset={0}
                         avoidCollisions
                       >

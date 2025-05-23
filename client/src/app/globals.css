@@ -51,6 +51,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#app-root {
+  isolation: isolate;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

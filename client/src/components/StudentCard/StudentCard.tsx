@@ -1,16 +1,10 @@
 import * as React from "react";
 import { StyledLink, Title, Wrapper } from "./styles";
 import Spacer from "../Spacer";
+import { Student } from "../../../types";
 
 interface Props {
-  student: {
-    id: number;
-    name: string;
-    age: number;
-    class: {
-      description: string;
-    };
-  };
+  student: Student;
 }
 
 function StudentCard({ student }: Props) {
@@ -24,7 +18,7 @@ function StudentCard({ student }: Props) {
         scale: 1.01,
       }}
     >
-      <StyledLink href={`/students/student/${student.id}`}>
+      <StyledLink href={`/students/${student.id}`}>
         <Title>{student.name}</Title>
         <Spacer size={12} />
         <p>Class: {student.class?.description ?? "No class assigned"}</p>
