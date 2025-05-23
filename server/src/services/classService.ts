@@ -5,7 +5,6 @@ export function fetchClass(
   prisma: PrismaClient,
   classId: string
 ): Promise<Class | null> {
-    console.log("Fetching class with ID:", classId);
   return prisma.classes.findUnique({
     where: { id: classId },
   });
