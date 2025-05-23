@@ -20,6 +20,12 @@ type Student {
   name: String!
   age: Int!
   class_id: String
+  class: Class
+}
+
+type Class {
+  id: String!
+  description: String!
 }
 
 input IntFilter {

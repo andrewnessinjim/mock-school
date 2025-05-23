@@ -11,6 +11,7 @@ import {
   StudentFilter,
 } from "../generated/graphql_types";
 import { Prisma } from "@prisma/client";
+import { fetchClass } from "../services/classService";
 
 function graphqlToPrismaFilter(
   filter?: StudentFilter | null
@@ -49,6 +50,15 @@ function graphqlToPrismaSort(
 }
 
 const studentResolvers: Resolvers = {
+  Student: {
+    class: async (parent, _, { prisma }) => {
+      if (!parent.class_id) {
+        return null;
+      }
+
+      return fetchClass(prisma, parent.class_id);
+    },
+  },
   Query: {
     students: async (_, args, { prisma }) => {
       const { filter, sort, cursor, pageSize, direction = "forward" } = args;
