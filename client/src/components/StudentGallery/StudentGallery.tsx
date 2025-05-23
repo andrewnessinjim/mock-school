@@ -28,7 +28,7 @@ function StudentGallery() {
 
   return (
     <div className="student-card">
-      <h2>{student.name}</h2>
+      <h3>{student.name}</h3>
       <p>Age: {student.age}</p>
       <p>Class: {student.class?.description ?? "No class assigned"}</p>
     </div>

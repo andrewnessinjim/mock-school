@@ -1,12 +1,10 @@
-import Header from "@/components/Header";
 import { Wrapper } from "./styles";
-import StudentGallery from "@/components/StudentGallery";
 
 export default function Home() {
   return (
     <Wrapper>
-      <Header />
-      <StudentGallery />
+      <h2>Home Page</h2>
+      <p>Welcome to the home page!</p>
     </Wrapper>
   );
 }

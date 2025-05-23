@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "@/components/StyledComponentsRegistry";
 
 import "./globals.css";
 import ApolloContextProvider from "@/components/ApolloContextProvider";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ApolloContextProvider>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <StyledComponentsRegistry>
+            <Header />
+            {children}
+          </StyledComponentsRegistry>
         </ApolloContextProvider>
       </body>
     </html>

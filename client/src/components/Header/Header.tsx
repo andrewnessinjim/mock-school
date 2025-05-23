@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Heading, Wrapper } from "./styles";
 import HamMenu, { MenuItems } from "../HamMenu";
+import NavBar from "../NavBar";
 
 const hamMenuItems: MenuItems = [
   {
@@ -37,6 +38,7 @@ function Header() {
     <Wrapper>
       <HamMenu menuItems={hamMenuItems} />
       <Heading>Mock School</Heading>
+      <NavBar />
     </Wrapper>
   );
 }
