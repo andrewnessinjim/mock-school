@@ -1,8 +1,14 @@
-import { PrismaClient } from "@prisma/client";
-import { Pool } from "pg";
+import { Prisma, PrismaClient } from "@prisma/client";
 
-export async function fetchStudents(prisma: PrismaClient) {
-  return await prisma.students.findMany();
+export async function fetchStudents(
+  prisma: PrismaClient,
+  filter?: Prisma.studentsWhereInput
+) {
+  return prisma.students.findMany({
+    where: {
+      ...filter,
+    },
+  });
 }
 
 export async function fetchStudent(prisma: PrismaClient, studentId: number) {

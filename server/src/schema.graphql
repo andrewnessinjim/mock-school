@@ -1,6 +1,5 @@
 type Query {
-  books: [Book]
-  students: [Student!]!
+  students(filter: StudentFilter): [Student!]!
   student(id: Int!): Student
 }
 
@@ -10,14 +9,23 @@ type Mutation {
   deleteStudent(id: Int!): Boolean
 }
 
-type Book {
-  title: String
-  author: String
-}
-
 type Student {
   id: Int!
   name: String!
   age: Int!
+  class_id: String
+}
+
+input IntFilter {
+  equals: Int
+  not: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+}
+
+input StudentFilter {
+  age: IntFilter
   class_id: String
 }

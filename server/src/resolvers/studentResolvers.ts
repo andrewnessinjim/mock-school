@@ -5,24 +5,34 @@ import {
   saveStudent,
   updateStudent,
 } from "../services/studentServices";
-import { Resolvers } from "../generated/graphql_types";
+import { Resolvers, StudentFilter } from "../generated/graphql_types";
+import { Prisma } from "@prisma/client";
 
-const books = [
-  {
-    title: "The Awakening",
-    author: "Kate Chopin",
-  },
-  {
-    title: "City of Glass",
-    author: "Paul Auster",
-  },
-];
+function graphqlToPrismaFilter(
+  filter?: StudentFilter | null
+): Prisma.studentsWhereInput | undefined {
+  if (!filter) {
+    return undefined;
+  }
+
+  const { age, class_id } = filter;
+  return {
+    age: {
+      ...(age?.lte ? { lte: age?.lte } : undefined),
+      ...(age?.gte ? { gte: age?.gte } : undefined),
+      ...(age?.gt ? { gt: age?.gt } : undefined),
+      ...(age?.lt ? { lt: age?.lt } : undefined),
+      ...(age?.equals ? { equals: age?.equals } : undefined),
+      ...(age?.not ? { not: age?.not } : undefined),
+    },
+    class_id: class_id ? { equals: class_id } : undefined,
+  };
+}
 
 const studentResolvers: Resolvers = {
   Query: {
-    books: () => books,
-    students: async (_, __, { prisma }) => {
-      return fetchStudents(prisma);
+    students: async (_, { filter }, { prisma }) => {
+      return fetchStudents(prisma, graphqlToPrismaFilter(filter));
     },
     student: async (_, { id: studentId }, { prisma }) => {
       return fetchStudent(prisma, studentId);
