@@ -1,10 +1,11 @@
 import StudentGallery from "@/components/StudentGallery";
 import { Wrapper } from "./styles";
+import { PageTitle } from "../styles";
 
 export function StudentsPage() {
   return (
     <Wrapper>
-      <h2>Students</h2>
+      <PageTitle>Students</PageTitle>
       <StudentGallery />
     </Wrapper>
   );

@@ -26,6 +26,7 @@
 
   --background: var(--plum-12);
   --foreground: var(--plum-1);
+  --max-text-container-width: 600px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,6 +40,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  line-height: 1.5;
 }
 
 body {

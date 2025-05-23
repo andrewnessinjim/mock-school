@@ -5,6 +5,7 @@ import StyledComponentsRegistry from "@/components/StyledComponentsRegistry";
 import "./globals.css";
 import ApolloContextProvider from "@/components/ApolloContextProvider";
 import Header from "@/components/Header";
+import Spacer from "@/components/Spacer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
         <ApolloContextProvider>
           <StyledComponentsRegistry>
             <Header />
+            <Spacer size={24}/>
             {children}
           </StyledComponentsRegistry>
         </ApolloContextProvider>
