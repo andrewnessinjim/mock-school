@@ -3,7 +3,9 @@ import { Wrapper } from "./styles";
 import { PageTitle } from "../styles";
 import Spacer from "@/components/Spacer";
 
-export function StudentsPage({ children }: { children: React.ReactNode }) {
+export const dynamic = 'force-dynamic';
+
+function StudentsPage({ children }: { children: React.ReactNode }) {
   return (
     <Wrapper>
       <PageTitle>Students</PageTitle>
