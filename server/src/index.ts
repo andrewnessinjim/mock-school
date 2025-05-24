@@ -23,7 +23,10 @@ const typeDefs = gql(
 const guardedSchema = withGuard(typeDefs, resolvers);
 
 async function startApolloServer() {
-  const server = new ApolloServer({ schema: guardedSchema });
+  const server = new ApolloServer({
+    schema: guardedSchema,
+    introspection: true,
+  });
   const { url } = await startStandaloneServer(server, {
     context: async ({ req }) => {
       const authHeader = req.headers.authorization || "";
