@@ -19,6 +19,9 @@ const GET_STUDENTS = gql`
     }
   }
 `;
+// function delay(ms: number): Promise<void> {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
 async function StudentGallery() {
   const result = await apolloClient.query({

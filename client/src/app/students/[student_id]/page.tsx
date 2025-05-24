@@ -30,7 +30,6 @@ const GET_STUDENT = gql`
 
 async function StudentPage({ params }: Props) {
   const { student_id } = await params;
-  // await delay(20000);
   const result = await apolloClient.query({
     query: GET_STUDENT,
     variables: {
@@ -43,8 +42,6 @@ async function StudentPage({ params }: Props) {
   return <StudentPopup student={result.data.student} />;
 }
 
-// function delay(ms: number): Promise<void> {
-//   return new Promise(resolve => setTimeout(resolve, ms));
-// }
+
 
 export default StudentPage;
