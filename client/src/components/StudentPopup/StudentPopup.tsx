@@ -12,6 +12,7 @@ import { motion } from "motion/react";
 import SubjectsSection from "./SubjectsSection";
 import AttendanceSection from "./AttendanceSection";
 import InfoSection from "../InfoSection";
+import { X } from "lucide-react";
 
 interface Props {
   student?: Student;
@@ -65,6 +66,9 @@ function StudentPopup({ student, isPlaceholder = false }: Props) {
                   </>
                 )}
               </ContentWrapper>
+              <DialogClose>
+                <X size={32}/>
+              </DialogClose>
             </DialogContent>
           </Dialog.Content>
         )}
@@ -137,6 +141,15 @@ const DialogTitle = styled(Dialog.Title)`
   grid-area: title;
   border-bottom: 2px solid var(--plum-7);
   padding-bottom: 12px;
+`;
+
+const DialogClose = styled(Dialog.Close)`
+  background: none;
+  border: none;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
 `;
 
 export default StudentPopup;
