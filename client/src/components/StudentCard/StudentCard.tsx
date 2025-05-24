@@ -22,14 +22,16 @@ function StudentCard({ student }: Props) {
       }}
     >
       <StyledLink href={`/students/${student.id}`}>
-        <Title>{student.name}</Title>
-        <Spacer size={12} />
-        <InfoSection
-          age={student.age}
-          className={student.class?.description}
-          id={student.id}
-          showImage={false}
-        />
+        <div>
+          <Title>{student.name}</Title>
+          <Spacer size={12} />
+          <InfoSection
+            age={student.age}
+            className={student.class?.description}
+            id={student.id}
+            showImage={false}
+          />
+        </div>
       </StyledLink>
       <DropdownTriggerWrapper>
         <StyledDropdownMenu
