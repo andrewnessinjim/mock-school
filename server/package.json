@@ -8,7 +8,8 @@
     "start": "npm run compile && node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "graphql-codegen --watch \"src/schema.graphql\"",
-    "hash": "node hash.js"
+    "hash": "node hash.js",
+    "build": "npm run generate && npm run compile"
   },
   "keywords": [],
   "author": "example_user <example-user@email.com>",
