@@ -1,8 +1,10 @@
 import * as React from "react";
-import { StyledLink, Title, Wrapper } from "./styles";
+import { DropdownTriggerWrapper, StyledLink, Title, Wrapper } from "./styles";
 import Spacer from "../Spacer";
 import { Student } from "../../../types";
 import InfoSection from "../InfoSection";
+import StyledDropdownMenu from "../StyledDropdownMenu";
+import { Ellipsis } from "lucide-react";
 
 interface Props {
   student: Student;
@@ -29,6 +31,16 @@ function StudentCard({ student }: Props) {
           showImage={false}
         />
       </StyledLink>
+      <DropdownTriggerWrapper>
+        <StyledDropdownMenu
+          triggerButtonContent={<Ellipsis />}
+          menuItems={[
+            { label: "Edit" },
+            { label: "Delete" },
+            { label: "Flag" },
+          ]}
+        />
+      </DropdownTriggerWrapper>
     </Wrapper>
   );
 }

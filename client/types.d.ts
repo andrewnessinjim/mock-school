@@ -18,3 +18,14 @@ export interface Attendance {
   date: string;
   status: string;
 }
+
+interface MenuItem {
+  label: string;
+}
+
+interface MenuItemWithSubItems {
+  label: string;
+  subItems: MenuItem[];
+}
+
+export type MenuItems = (MenuItem | MenuItemWithSubItems)[];
