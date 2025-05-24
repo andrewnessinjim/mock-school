@@ -2,6 +2,7 @@ import * as React from "react";
 import { StyledLink, Title, Wrapper } from "./styles";
 import Spacer from "../Spacer";
 import { Student } from "../../../types";
+import InfoSection from "../InfoSection";
 
 interface Props {
   student: Student;
@@ -21,9 +22,12 @@ function StudentCard({ student }: Props) {
       <StyledLink href={`/students/${student.id}`}>
         <Title>{student.name}</Title>
         <Spacer size={12} />
-        <p>Class: {student.class?.description ?? "No class assigned"}</p>
-        <Spacer size={4} />
-        <p>Age: {student.age ?? "No age assigned"}</p>
+        <InfoSection
+          age={student.age}
+          className={student.class?.description}
+          id={student.id}
+          showImage={false}
+        />
       </StyledLink>
     </Wrapper>
   );

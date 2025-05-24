@@ -17,9 +17,6 @@ export default function withGuard(
   });
 
   const permissions = shield({
-    Query: {
-      students: isAuthenticated,
-    },
     Mutation: {
       updateStudent: isAdmin,
       deleteStudent: isAdmin,

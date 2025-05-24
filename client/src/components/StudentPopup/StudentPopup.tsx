@@ -11,7 +11,7 @@ import Spinner from "../Spinner";
 import { motion } from "motion/react";
 import SubjectsSection from "./SubjectsSection";
 import AttendanceSection from "./AttendanceSection";
-import InfoSection from "./InfoSection";
+import InfoSection from "../InfoSection";
 
 interface Props {
   student?: Student;
@@ -56,11 +56,12 @@ function StudentPopup({ student, isPlaceholder = false }: Props) {
 
                     <InfoSection
                       age={student.age}
-                      className={student.class.description}
+                      className={student.class?.description}
                       id={student.id}
+                      showImage={true}
                     />
-                    <SubjectsSection subjects={student.subjects} />
-                    <AttendanceSection attendance={student.attendance} />
+                    <SubjectsSection subjects={student?.subjects} />
+                    <AttendanceSection attendance={student?.attendance} />
                   </>
                 )}
               </ContentWrapper>

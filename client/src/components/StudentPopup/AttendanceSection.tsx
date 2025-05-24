@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Attendance } from "../../../types";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import UnavailableMessage from "../UnavailableMessage";
 
 interface Props {
   attendance: Attendance[];
@@ -28,6 +29,11 @@ function AttendanceSection({ attendance }: Props) {
           ))}
         </tbody>
       </table>
+      {(!attendance || attendance.length === 0) && (
+        <Centralize>
+          <UnavailableMessage />
+        </Centralize>
+      )}
     </Wrapper>
   );
 }
@@ -66,6 +72,11 @@ const Wrapper = styled.section`
   td {
     white-space: nowrap;
   }
+`;
+
+const Centralize = styled.div`
+  text-align: center;
+  margin-top: 1rem;
 `;
 
 export default AttendanceSection;

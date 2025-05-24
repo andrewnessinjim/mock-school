@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Subject } from "../../../types";
+import UnavailableMessage from "../UnavailableMessage";
 
 interface Props {
   subjects: Subject[];
@@ -9,11 +10,15 @@ function SubjectsSection({ subjects }: Props) {
   return (
     <Wrapper>
       <h3>Subjects</h3>
-      <ul>
-        {subjects.map((subject) => (
-          <li key={subject.id}>{subject.name}</li>
-        ))}
-      </ul>
+      {subjects && subjects.length !== 0 ? (
+        <ul>
+          {subjects?.map((subject) => (
+            <li key={subject.id}>{subject.name}</li>
+          ))}
+        </ul>
+      ) : (
+        <UnavailableMessage />
+      )}
     </Wrapper>
   );
 }
