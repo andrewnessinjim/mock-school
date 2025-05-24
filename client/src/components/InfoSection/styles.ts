@@ -3,9 +3,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-  grid-area: info;
-  justify-self: start;
-
   dl {
     display: grid;
     grid-template-columns: max-content auto;

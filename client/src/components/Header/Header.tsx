@@ -1,14 +1,18 @@
 import * as React from "react";
-import { Heading, Wrapper } from "./styles";
+import { Heading, PrimaryHeader, SecondaryHeader, Wrapper } from "./styles";
 import HamMenu from "../HamMenu";
 import NavBar from "../NavBar";
 
 function Header() {
   return (
     <Wrapper>
-      <HamMenu />
-      <Heading>Mock School</Heading>
-      <NavBar />
+      <PrimaryHeader>
+        <HamMenu />
+        <Heading>Mock School</Heading>
+      </PrimaryHeader>
+      <SecondaryHeader>
+        <NavBar />
+      </SecondaryHeader>
     </Wrapper>
   );
 }

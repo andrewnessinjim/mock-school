@@ -13,6 +13,7 @@ import SubjectsSection from "./SubjectsSection";
 import AttendanceSection from "./AttendanceSection";
 import InfoSection from "../InfoSection";
 import { X } from "lucide-react";
+import { MEDIA_QUERIES } from "@/constants";
 
 interface Props {
   student?: Student;
@@ -54,20 +55,21 @@ function StudentPopup({ student, isPlaceholder = false }: Props) {
                         Full details for {student.name}
                       </VisuallyHidden>
                     </Dialog.Description>
-
-                    <InfoSection
-                      age={student.age}
-                      className={student.class?.description}
-                      id={student.id}
-                      showImage={true}
-                    />
+                    <InfoWrapper>
+                      <InfoSection
+                        age={student.age}
+                        className={student.class?.description}
+                        id={student.id}
+                        showImage={true}
+                      />
+                    </InfoWrapper>
                     <SubjectsSection subjects={student?.subjects} />
                     <AttendanceSection attendance={student?.attendance} />
                   </>
                 )}
               </ContentWrapper>
               <DialogClose>
-                <X size={32}/>
+                <X size={32} />
               </DialogClose>
             </DialogContent>
           </Dialog.Content>
@@ -133,6 +135,14 @@ const ContentWrapper = styled.div`
     "info attendance"
     "subjects .";
   gap: 16px 48px;
+
+  @media ${MEDIA_QUERIES.phoneAndBelow} {
+    grid-template-areas:
+      "title"
+      "info"
+      "subjects"
+      "attendance";
+  }
 `;
 
 const DialogTitle = styled(Dialog.Title)`
@@ -141,6 +151,13 @@ const DialogTitle = styled(Dialog.Title)`
   grid-area: title;
   border-bottom: 2px solid var(--plum-7);
   padding-bottom: 12px;
+`;
+
+const InfoWrapper = styled.div`
+  grid-area: info;
+  @media ${MEDIA_QUERIES.phoneAndBelow} {
+    justify-self: center;
+  }
 `;
 
 const DialogClose = styled(Dialog.Close)`
