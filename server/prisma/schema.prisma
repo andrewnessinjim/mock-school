@@ -40,3 +40,10 @@ model subjects {
   name     String
   classes  classes @relation(fields: [class_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
+
+model users {
+  email    String @id
+  name     String
+  password String
+  role     String
+}

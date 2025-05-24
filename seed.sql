@@ -102,6 +102,29 @@ CREATE TABLE IF NOT EXISTS attendance (
     FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
+CREATE TABLE users (
+    email TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL
+);
+
+INSERT INTO
+    users (email, name, password, role)
+VALUES
+    (
+        'student@mockschool.com',
+        'Student',
+        '$2b$10$8Ky2DcMO1pBKe/FFM6UvX.Qak2b8T8Voq3hJSP03S9SjVfq04xeLG',
+        'student'
+    ),
+    (
+        'admin@mockschool.com',
+        'Admin',
+        '$2b$10$kcYrk9b005JGPjNIhATqZ.dzhsyZBPnWHIXyGgE4ff9c/Q4W5FfTe',
+        'admin'
+    );
+
 INSERT INTO
     attendance (student_id, date, class_id, status)
 VALUES

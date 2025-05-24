@@ -13,6 +13,7 @@ type Mutation {
   addStudent(name: String!, age: Int!, class_id: String): Student
   updateStudent(id: Int!, name: String, age: Int, class_id: String): Student
   deleteStudent(id: Int!): Boolean
+  login(email: String!, password: String!): AuthPayload
 }
 
 type Student {
@@ -41,6 +42,17 @@ type Attendance {
   date: String!
   class_id: String!
   status: String!
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  name: String
+  email: String
+  role: String
 }
 
 input IntFilter {

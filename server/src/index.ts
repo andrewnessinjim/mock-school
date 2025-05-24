@@ -7,8 +7,10 @@ import { readFileSync } from "fs";
 import path from "path";
 import { gql } from "graphql-tag";
 
-import studentResolvers from "./resolvers/studentResolvers";
 import { PrismaClient } from "@prisma/client";
+import jwt from "jsonwebtoken";
+import withGuard from "./permissions";
+import resolvers from "./resolvers";
 
 const prisma = new PrismaClient();
 
@@ -18,17 +20,27 @@ const typeDefs = gql(
   })
 );
 
-
-const resolvers = {
-  ...studentResolvers,
-};
+const guardedSchema = withGuard(typeDefs, resolvers);
 
 async function startApolloServer() {
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({ schema: guardedSchema });
   const { url } = await startStandaloneServer(server, {
-    context: async () => {
+    context: async ({ req }) => {
+      const authHeader = req.headers.authorization || "";
+      const token = authHeader.replace("Bearer ", "").trim();
+
+      let user = null;
+      if (token) {
+        try {
+          user = jwt.verify(token, process.env.JWT_SECRET as string);
+        } catch (err) {
+          console.error("Invalid token", err);
+          console.error("Token:", token);
+        }
+      }
       return {
         prisma,
+        user,
       };
     },
   });

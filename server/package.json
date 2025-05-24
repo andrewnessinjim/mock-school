@@ -7,7 +7,8 @@
     "dev": "concurrently \"ts-node-dev --respawn --watch ./**/*.graphql ./src/index.ts\" \"npm run generate\"",
     "start": "npm run compile && node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "graphql-codegen --watch \"src/schema.graphql\""
+    "generate": "graphql-codegen --watch \"src/schema.graphql\"",
+    "hash": "node hash.js"
   },
   "keywords": [],
   "author": "example_user <example-user@email.com>",
@@ -17,14 +18,20 @@
     "@apollo/server": "^4.12.1",
     "@parcel/watcher": "^2.4.0",
     "@prisma/client": "^6.8.2",
+    "bcrypt": "^6.0.0",
     "dotenv": "^16.5.0",
     "graphql": "^16.11.0",
-    "graphql-tag": "^2.12.6"
+    "graphql-middleware": "^6.1.35",
+    "graphql-shield": "^7.6.5",
+    "graphql-tag": "^2.12.6",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.6",
     "@graphql-codegen/typescript": "^4.1.6",
     "@graphql-codegen/typescript-resolvers": "^4.5.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.15.21",
     "@types/pg": "^8.15.2",
     "concurrently": "^9.1.2",
