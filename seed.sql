@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS subjects (
     FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
+CREATE INDEX idx_subjects_class_id ON subjects(class_id);
+
 INSERT INTO
     subjects (class_id, name)
 VALUES
@@ -92,16 +94,6 @@ VALUES
     ('Wendy Smith', 15, 'CLS101'),
     ('Zane Garcia', 14, 'CLS102');
 
-CREATE TABLE IF NOT EXISTS attendance (
-    id SERIAL PRIMARY KEY,
-    student_id INTEGER NOT NULL,
-    date DATE NOT NULL,
-    class_id TEXT NOT NULL,
-    status TEXT NOT NULL,
-    FOREIGN KEY (student_id) REFERENCES students(id),
-    FOREIGN KEY (class_id) REFERENCES classes(id)
-);
-
 CREATE TABLE users (
     email TEXT PRIMARY KEY,
     name TEXT NOT NULL,
@@ -124,6 +116,18 @@ VALUES
         '$2b$10$kcYrk9b005JGPjNIhATqZ.dzhsyZBPnWHIXyGgE4ff9c/Q4W5FfTe',
         'admin'
     );
+
+CREATE TABLE IF NOT EXISTS attendance (
+    id SERIAL PRIMARY KEY,
+    student_id INTEGER NOT NULL,
+    date DATE NOT NULL,
+    class_id TEXT NOT NULL,
+    status TEXT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (class_id) REFERENCES classes(id)
+);
+
+CREATE INDEX idx_attendance_student_id ON attendance(student_id);
 
 INSERT INTO
     attendance (student_id, date, class_id, status)
