@@ -76,13 +76,12 @@ const studentResolvers: Resolvers = {
   },
   Query: {
     students: async (_, args, { prisma }) => {
-      const { filter, sort, cursor, pageSize, direction = "forward" } = args;
+      const { filter, sort, cursor, pageSize } = args;
 
       return fetchStudents(
         prisma,
         cursor ?? 1,
         pageSize ?? 10,
-        direction,
         graphqlToPrismaFilter(filter),
         graphqlToPrismaSort(sort)
       );

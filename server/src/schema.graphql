@@ -4,7 +4,6 @@ type Query {
     sort: [SortOrder!]
     cursor: Int
     pageSize: Int
-    direction: PaginationDirection = forward
   ): StudentPage!
   student(id: Int!): Student
 }
@@ -94,5 +93,4 @@ enum PaginationDirection {
 type StudentPage {
   items: [Student!]!
   hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
 }

@@ -9,16 +9,14 @@ export async function fetchStudents(
   prisma: PrismaClient,
   cursor: number,
   pageSize: number = 10,
-  direction: "forward" | "backward" = "forward",
   filter?: Prisma.studentsWhereInput,
   orderBy?: Prisma.studentsOrderByWithRelationInput
 ) {
-
   const paginationArgs: PaginationArgs = cursor
     ? {
         cursor: { id: cursor },
         skip: 1,
-        take: direction === "forward" ? pageSize + 1 : -(pageSize + 1),
+        take: pageSize + 1,
       }
     : {};
 
@@ -30,16 +28,11 @@ export async function fetchStudents(
 
   const hasMore = students.length > pageSize;
 
-  const slicedStudents = hasMore
-    ? direction === "forward"
-      ? students.slice(0, pageSize)
-      : students.slice(1)
-    : students;
+  const slicedStudents = hasMore ? students.slice(0, pageSize) : students;
 
   return {
     items: slicedStudents,
-    hasNextPage: direction === "forward" ? hasMore : !!cursor,
-    hasPreviousPage: direction === "backward" ? hasMore : !!cursor,
+    hasNextPage: hasMore,
   };
 }
 
